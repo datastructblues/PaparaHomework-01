@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     id("com.google.gms.google-services")
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    
 }
 
 android {
@@ -104,5 +106,14 @@ dependencies {
     // Register
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
     implementation ("androidx.activity:activity-compose:1.5.1")
+
+    // Retrofit
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.kotlin.serialization)
+
+    // KotlinX Serialization
+    implementation(libs.kotlinx.serialization.json)
+
 
 }
