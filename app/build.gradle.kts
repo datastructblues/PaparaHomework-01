@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -18,6 +21,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+    }
+    hilt {
+        enableAggregatingTask = true
     }
 
     buildTypes {
@@ -73,4 +79,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.lifecycle.viewmodel.compose)
+
+    //Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation (libs.firebase.auth)
+
+    // Coroutines
+    implementation(libs.coroutines.play.services)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    kapt(libs.hilt.androidx.compiler)
+    implementation(libs.hilt.navigation.compose)
 }
