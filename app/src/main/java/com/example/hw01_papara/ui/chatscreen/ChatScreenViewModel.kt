@@ -13,11 +13,14 @@ import com.google.ai.client.generativeai.type.BlockThreshold
 import com.google.ai.client.generativeai.type.HarmCategory
 import com.google.ai.client.generativeai.type.SafetySetting
 import com.google.ai.client.generativeai.type.content
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
+import javax.inject.Inject
 
-class ChatScreenViewModel : ViewModel() {
+@HiltViewModel
+class ChatScreenViewModel @Inject constructor() : ViewModel() {
 
     fun createGenerativeModel(modelName: String) = GenerativeModel(
         modelName = modelName,
