@@ -24,6 +24,7 @@ hilt-android = "2.51.1"
 hilt-compiler = "2.51.1"
 hilt-navigation-compose = "1.2.0"
 hilt-androidx-compiler = "1.2.0"
+firebaseAuthKtx = "23.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,6 +58,7 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-compiler" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 hilt-androidx-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt-androidx-compiler" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
