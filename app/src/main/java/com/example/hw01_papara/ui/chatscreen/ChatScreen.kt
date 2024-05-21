@@ -48,21 +48,14 @@ import com.example.hw01_papara.R
 import com.example.hw01_papara.data.Message
 import com.example.hw01_papara.ui.theme.Hw01paparaTheme
 import com.example.hw01_papara.ui.theme.LightColor3
+import com.example.hw01_papara.ui.theme.LightColor5
 
 
 @Composable
 fun MessagingScreen() {
     val viewmodel: ChatScreenViewModel = viewModel()
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (messageList, inputField) = createRefs()
-
-        //TODO: Navigate back here onClick
-        IconButton(onClick = { }) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_back),
-                contentDescription = "Back"
-            )
-        }
+        val (messageList, inputField, backButton) = createRefs()
 
         MessageList(
             messages = viewmodel.messages.reversed(),
@@ -86,6 +79,21 @@ fun MessagingScreen() {
                 }
                 .padding(8.dp)
         )
+
+        IconButton(
+            onClick = { /*TODO: Navigate back here*/ },
+            modifier = Modifier
+                .constrainAs(backButton) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                }
+                .padding(top = 16.dp, start = 8.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_back),
+                contentDescription = "Back"
+            )
+        }
     }
 }
 
@@ -113,7 +121,7 @@ fun MessageInput(
         IconButton (onClick = { launcher.launch("image/*") }) {
             Icon(
                 painter = painterResource(id = R.drawable.image),
-                contentDescription = "Your Icon Description"
+                contentDescription = null
             )
         }
         selectedImage?.let {
@@ -129,7 +137,8 @@ fun MessageInput(
                 .weight(1f)
                 .padding(end = 8.dp)
                 .background(Color.LightGray)
-                .padding(8.dp)
+                .padding(8.dp),
+            maxLines = 1,
         )
         ElevatedButton(onClick = {
             if (selectedImage == null) {
@@ -178,7 +187,7 @@ fun MessageBubble(message: Message) {
             },
             modifier = Modifier
                 .align(alignment)
-                .padding(8.dp,0.dp),
+                .padding(8.dp, 0.dp),
             fontSize = 8.sp,
             fontStyle = MaterialTheme.typography.bodySmall.fontStyle,
 
@@ -193,7 +202,7 @@ fun MessageBubble(message: Message) {
                         bottomEnd = if (message.isUser) 0f else 48f
                     )
                 )
-                .background(LightColor3)
+                .background(if (message.isUser) LightColor3 else LightColor5)
                 .padding(8.dp)
         ) {
             Column(
