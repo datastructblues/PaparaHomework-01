@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">hw01-papara</string>
+    <string name="back_to_meals">Back to Meals</string>
+    <string name="expand_ingredients">Expand Ingredients</string>
+    <string name="expand_instructions">Expand Instructions</string>
 </resources>

@@ -4,4 +4,6 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class PaparaHomeworkApp: Application()
+class PaparaHomeworkApp: Application() {
+
+}
