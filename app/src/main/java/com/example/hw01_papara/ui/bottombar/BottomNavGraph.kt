@@ -1,9 +1,12 @@
 package com.example.hw01_papara.ui.bottombar
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.hw01_papara.ui.chatnavigate.ChatNavigaitonScreen
+import com.example.hw01_papara.ui.chatscreen.MessagingScreen
 
 
 @Composable
@@ -15,7 +18,7 @@ fun BottomNavGraph(
         startDestination = BottomBarScreen.Chat.route
     ) {
         composable(route = BottomBarScreen.Chat.route) {
-            ChatScreen()
+            MessagingScreen(navController = navController)
         }
         composable(route = BottomBarScreen.Dishes.route) {
             DishesScreen()
