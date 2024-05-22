@@ -9,12 +9,23 @@ sealed class BottomBarScreen(
     val icon: Int,
     val icon_focused: Int
 ) {
-    object Dishes: BottomBarScreen(
+    data object Dishes: BottomBarScreen(
         route = "dishes",
         title = "Dishes",
         icon = R.drawable.ic_dishes,
         icon_focused = R.drawable.ic_dishes
     )
+
+    data object Detail: BottomBarScreen(
+        route = "detail{mealId}",
+        title = "Detail",
+        icon = R.drawable.ic_dishes,
+        icon_focused = R.drawable.ic_dishes
+    ) {
+        fun passMealId(mealId: Int): String {
+            return "detail/$mealId"
+        }
+    }
 
     object Chat: BottomBarScreen(
         route = "chat",

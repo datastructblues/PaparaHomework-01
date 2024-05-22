@@ -16,9 +16,7 @@ fun NavigationGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screens.MealsScreen.route) {
         composable(Screens.MealsScreen.route) {
              MealsScreen(
-                navigateToDetail = {
-                    navController.navigate(Screens.MealDetailScreen.passMealId(it))
-                }
+                navController = navController
              )
         }
 

@@ -15,11 +15,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.example.hw01_papara.ui.bottombar.BottomBarScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MealsScreen(
-    navigateToDetail: (Int) -> Unit,
+    navController: NavHostController,
     mealsViewModel: MealsViewModel = hiltViewModel()
 ) {
     val mealState by mealsViewModel.mealState.collectAsState()
@@ -49,7 +51,7 @@ fun MealsScreen(
                     val meals = (mealState as MealState.Success).meals.results
                     MealsContent(
                         meals = meals,
-                        navigateToDetail = { id -> navigateToDetail(id) }
+                        navigateToDetail = { id -> navController.navigate(BottomBarScreen.Detail.passMealId(id)) }
                     )
                 }
                 is MealState.Error -> {
@@ -65,10 +67,4 @@ fun MealsScreen(
 
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MealsScreenPreview() {
-    MealsScreen(navigateToDetail = {})
 }
