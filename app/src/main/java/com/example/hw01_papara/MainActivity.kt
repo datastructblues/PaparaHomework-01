@@ -79,11 +79,6 @@ class MainActivity : ComponentActivity() {
                 MainScreen()
             }
 
-
-            //kullanılmıyor şu anlık
-            composable("messaging_screen") {
-                MessagingScreen(navController = navController)
-            }
         }
     }
 

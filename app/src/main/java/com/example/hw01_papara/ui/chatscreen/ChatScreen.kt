@@ -47,6 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.hw01_papara.R
 import com.example.hw01_papara.data.Message
+import com.example.hw01_papara.ui.bottombar.BottomBarScreen
 import com.example.hw01_papara.ui.theme.Hw01paparaTheme
 import com.example.hw01_papara.ui.theme.LightColor3
 import com.example.hw01_papara.ui.theme.LightColor5
@@ -82,7 +83,7 @@ fun MessagingScreen(navController: NavController) {
         )
 
         IconButton(
-            onClick = { navController.navigate("main_screen") },
+            onClick = { navController.navigate(BottomBarScreen.Chat.route) },
             modifier = Modifier
                 .constrainAs(backButton) {
                     top.linkTo(parent.top)

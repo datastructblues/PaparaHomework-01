@@ -26,6 +26,12 @@ sealed class BottomBarScreen(
             return "detail/$mealId"
         }
     }
+    data object Message: BottomBarScreen(
+        route = "chat/message",
+        title = "Message",
+        icon = R.drawable.ic_chat,
+        icon_focused = R.drawable.ic_chat
+    )
 
     object Chat: BottomBarScreen(
         route = "chat",

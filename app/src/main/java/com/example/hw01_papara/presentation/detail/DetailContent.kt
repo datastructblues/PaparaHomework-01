@@ -143,7 +143,7 @@ fun DetailsContent(
                     .fillMaxWidth()
                     .clickable { instructionsExpanded = !instructionsExpanded },
                 shape = RoundedCornerShape(8.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
             ) {
                 Column {
 
