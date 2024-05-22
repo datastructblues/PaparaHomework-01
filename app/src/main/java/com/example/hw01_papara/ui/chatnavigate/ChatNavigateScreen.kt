@@ -43,7 +43,7 @@ fun ChatNavigationScreen(navController: NavController) {
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                text = "Gurme Chat'e\n\nHoşgeldiniz!",
+                text = "Welcome to\n\nGurme Chat!",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 color = LightColor3,
@@ -53,7 +53,7 @@ fun ChatNavigationScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Bu uygulamada yapacağınız tüm yemekler ile ilgili sorularınıza cevap bulmayı amaçlıyoruz!",
+                text = "In this app, we aim to answer all your cooking questions!",
                 fontSize = 18.sp,
                 color = LightColor4,
                 modifier = Modifier
@@ -66,7 +66,7 @@ fun ChatNavigationScreen(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(LightColor2)
             ) {
                 Text(
-                    text = "Chat'e Başla!",
+                    text = "Start Chat!",
                     color = LightColor5
                 )
             }

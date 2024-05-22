@@ -14,6 +14,7 @@ import com.example.hw01_papara.presentation.detail.DetailScreen
 import com.example.hw01_papara.presentation.meals.MealsScreen
 import com.example.hw01_papara.ui.chatnavigate.ChatNavigationScreen
 import com.example.hw01_papara.ui.chatscreen.MessagingScreen
+import com.example.hw01_papara.ui.logout.LogoutScreen
 import com.example.hw01_papara.utils.Constants.MEAL_ID_ARGUMENT_KEY
 
 @Composable
@@ -55,7 +56,7 @@ fun BottomNavGraph(
 
         composable(route = BottomBarScreen.Logout.route) {
             Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
-                LogoutScreen()
+                LogoutScreen(navController)
             }
         }
     }

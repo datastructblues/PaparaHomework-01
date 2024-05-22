@@ -78,7 +78,6 @@ class MainActivity : ComponentActivity() {
             composable("main_screen") {
                 MainScreen()
             }
-
         }
     }
 

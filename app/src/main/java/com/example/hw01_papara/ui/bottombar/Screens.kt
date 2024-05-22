@@ -13,7 +13,3 @@ fun DishesScreen() {
     Text(text = "Search Screen")
 }
 
-@Composable
-fun LogoutScreen() {
-    Text(text = "Profile Screen")
-}

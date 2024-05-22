@@ -99,7 +99,7 @@ fun LoginScreen(navController: NavController) {
                         text = "Login",
                         onClick = { scope.launch {
                             //firebase kullanıcı girişi
-                            //  performLogin(context, email, password)
+                            //performLogin(context, email, password)
                             navController.navigate("main_screen")
                         } },
                         isEnabled = isFormValid
