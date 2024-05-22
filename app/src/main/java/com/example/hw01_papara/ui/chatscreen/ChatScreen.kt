@@ -35,8 +35,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -58,6 +60,15 @@ fun MessagingScreen(navController: NavController) {
     val viewmodel: ChatScreenViewModel = viewModel()
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (messageList, inputField, backButton) = createRefs()
+
+        Image(
+            painter = painterResource(id = R.drawable.wallpaper),
+            modifier = Modifier
+                .fillMaxSize(),
+            contentScale = ContentScale.FillHeight,
+            alpha = 0.2f,
+            contentDescription = null
+        )
 
         MessageList(
             messages = viewmodel.messages.reversed(),
@@ -191,7 +202,8 @@ fun MessageBubble(message: Message) {
                 .align(alignment)
                 .padding(8.dp, 0.dp),
             fontSize = 8.sp,
-            fontStyle = MaterialTheme.typography.bodySmall.fontStyle,
+            fontWeight = FontWeight.W500,
+            fontStyle = MaterialTheme.typography.bodyMedium.fontStyle,
 
             )
         Box(
@@ -227,14 +239,15 @@ fun MessageBubble(message: Message) {
     }
 }
 
-/*
+
 @Preview(showBackground = true)
 @Composable
 fun MessagingScreenPreview() {
+    val context = LocalContext.current
     Hw01paparaTheme {
-        MessagingScreen()
+        MessagingScreen(NavController(context))
     }
-}*/
+}
 
 @Preview(showBackground = true)
 @Composable
