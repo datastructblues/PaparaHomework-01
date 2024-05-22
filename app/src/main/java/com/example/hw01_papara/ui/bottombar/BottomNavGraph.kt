@@ -14,6 +14,7 @@ import com.example.hw01_papara.presentation.detail.DetailScreen
 import com.example.hw01_papara.presentation.meals.MealsScreen
 import com.example.hw01_papara.ui.chatnavigate.ChatNavigationScreen
 import com.example.hw01_papara.ui.chatscreen.MessagingScreen
+import com.example.hw01_papara.ui.loginscreen.LoginScreen
 import com.example.hw01_papara.ui.logout.LogoutScreen
 import com.example.hw01_papara.utils.Constants.MEAL_ID_ARGUMENT_KEY
 
@@ -26,12 +27,12 @@ fun BottomNavGraph(
         startDestination = BottomBarScreen.Chat.route
     ) {
         composable(route = BottomBarScreen.Chat.route) {
-            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+            Box(modifier = Modifier.padding(bottom = 56.dp)) {
                 ChatNavigationScreen(navController = navController)
             }
         }
         composable(route = BottomBarScreen.Dishes.route) {
-            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+            Box(modifier = Modifier.padding(bottom = 56.dp)) {
                 MealsScreen(navController = navController)
             }
         }
@@ -42,21 +43,26 @@ fun BottomNavGraph(
                 type = NavType.IntType
             })
         ) {
-            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+            Box(modifier = Modifier.padding(bottom = 56.dp)) {
                 DetailScreen {
                     navController.popBackStack()
                 }
             }
         }
         composable(route = BottomBarScreen.Message.route) {
-            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+            Box(modifier = Modifier.padding(bottom = 56.dp)) {
                 MessagingScreen(navController = navController)
             }
         }
 
         composable(route = BottomBarScreen.Logout.route) {
-            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+            Box(modifier = Modifier.padding(bottom = 56.dp)) {
                 LogoutScreen(navController)
+            }
+        }
+        composable(route = BottomBarScreen.Login.route) {
+            Box(modifier = Modifier.padding(bottom = 56.dp)) {
+                LoginScreen(navController)
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.hw01_papara.ui.registerscreen
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -23,10 +25,12 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.*
 import com.example.hw01_papara.R
+import com.example.hw01_papara.viewmodel.AuthViewModel
 import java.util.regex.Pattern
 
 class RegisterActivity : ComponentActivity() {
@@ -64,7 +68,7 @@ fun GradientButton(
 }
 
 @Composable
-fun RegisterScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController, viewModel: AuthViewModel = hiltViewModel()) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
@@ -72,6 +76,9 @@ fun RegisterScreen(navController: NavController) {
     var passwordError by remember { mutableStateOf(false) }
     var passwordMatchError by remember { mutableStateOf(false) }
     val gradient = Brush.horizontalGradient(listOf(Color(0xFFFF8C61), Color(0xFF5C374C)))
+    val registerResult = viewModel.registerResult.collectAsState(initial = null)
+    val context = LocalContext.current
+
 
     val emailPattern = Pattern.compile(
         "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -246,7 +253,13 @@ fun RegisterScreen(navController: NavController) {
 
                     if (!emailError && !passwordError && !passwordMatchError) {
                         //succes işlemi
-                        navController.navigate("main_screen")
+                        viewModel.registerUser(email.text, password.text)
+                        if(registerResult != null){
+                            navController.navigate("main_screen")
+                        }else{
+                            Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
+                        }
+
                     }
                 }
             )
