@@ -53,6 +53,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -62,7 +63,7 @@ import com.example.hw01_papara.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isFormValid = email.isNotEmpty() && password.length >= 6
@@ -99,6 +100,7 @@ fun LoginScreen() {
                         onClick = { scope.launch {
                             //firebase kullanıcı girişi
                             //  performLogin(context, email, password)
+                            navController.navigate("main_screen")
                         } },
                         isEnabled = isFormValid
                     )

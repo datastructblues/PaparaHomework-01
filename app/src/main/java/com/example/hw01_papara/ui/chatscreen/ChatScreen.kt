@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.hw01_papara.R
 import com.example.hw01_papara.data.Message
 import com.example.hw01_papara.ui.theme.Hw01paparaTheme
@@ -52,7 +53,7 @@ import com.example.hw01_papara.ui.theme.LightColor5
 
 
 @Composable
-fun MessagingScreen() {
+fun MessagingScreen(navController: NavController) {
     val viewmodel: ChatScreenViewModel = viewModel()
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (messageList, inputField, backButton) = createRefs()
@@ -81,7 +82,7 @@ fun MessagingScreen() {
         )
 
         IconButton(
-            onClick = { /*TODO: Navigate back here*/ },
+            onClick = { navController.navigate("main_screen") },
             modifier = Modifier
                 .constrainAs(backButton) {
                     top.linkTo(parent.top)
@@ -225,14 +226,14 @@ fun MessageBubble(message: Message) {
     }
 }
 
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun MessagingScreenPreview() {
     Hw01paparaTheme {
         MessagingScreen()
     }
-}
+}*/
 
 @Preview(showBackground = true)
 @Composable
