@@ -32,6 +32,12 @@ sealed class BottomBarScreen(
         icon = R.drawable.ic_chat,
         icon_focused = R.drawable.ic_chat
     )
+    data object Login: BottomBarScreen(
+        route = "chat/login",
+        title = "Message",
+        icon = R.drawable.ic_chat,
+        icon_focused = R.drawable.ic_chat
+    )
 
     object Chat: BottomBarScreen(
         route = "chat",

@@ -1,6 +1,7 @@
 package com.example.hw01_papara.ui.loginscreen
 
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,6 +30,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,22 +55,26 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.hw01_papara.R
+import com.example.hw01_papara.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
+import kotlin.jvm.Throws
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: AuthViewModel = hiltViewModel()) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isFormValid = email.isNotEmpty() && password.length >= 6
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val loginResult = viewModel.loginResult.collectAsState(initial = null)
 
     Image(
         painter = painterResource(id = R.drawable.foddo),
@@ -78,7 +84,9 @@ fun LoginScreen(navController: NavController) {
     )
 
     Surface(
-        modifier = Modifier.fillMaxSize().padding(20.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
         color = Color.White.copy(alpha = 0.3f)
     ) {
         Column {
@@ -97,11 +105,17 @@ fun LoginScreen(navController: NavController) {
                 Column {
                     GradientButton(
                         text = "Login",
-                        onClick = { scope.launch {
-                            //firebase kullanıcı girişi
-                            //performLogin(context, email, password)
-                            navController.navigate("main_screen")
-                        } },
+                        onClick = {
+                            scope.launch {
+                                //firebase kullanıcı girişi
+                                viewModel.loginUser(email, password)
+                                if(loginResult != null){
+                                    navController.navigate("main_screen")
+                                }else{
+                                    Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        },
                         isEnabled = isFormValid
                     )
                     Spacer(modifier = Modifier.height(60.dp))
@@ -115,16 +129,18 @@ fun LoginScreen(navController: NavController) {
         }
     }
 }
+
 @Composable
 fun AnimationComponent(lottieAnimation: Int) {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(lottieAnimation))
 
     LottieAnimation(
         composition = composition, iterations = LottieConstants.IterateForever,
-        modifier = Modifier.width(250.dp).height(250.dp)
+        modifier = Modifier
+            .width(250.dp)
+            .height(250.dp)
     )
 }
-
 
 
 @Composable
@@ -153,9 +169,6 @@ fun GradientButton(text: String, onClick: () -> Unit, isEnabled: Boolean) {
         )
     }
 }
-
-
-
 
 
 @Composable
@@ -208,7 +221,6 @@ fun MyTextField(labelVal: String, icon: ImageVector, textVal: String, onValueCha
 }
 
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordTextComponent(labelVal: String, password: String, onValueChange: (String) -> Unit) {
@@ -254,9 +266,8 @@ fun PasswordTextComponent(labelVal: String, password: String, onValueChange: (St
 }
 
 
-
 @Composable
-fun BottomLoginTextComponent(initialText: String, action: String,navController: NavController) {
+fun BottomLoginTextComponent(initialText: String, action: String, navController: NavController) {
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = Color(0xFF985277))) {
             append(initialText)
