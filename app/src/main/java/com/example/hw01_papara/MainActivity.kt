@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
@@ -21,6 +22,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.hw01_papara.ui.bottombar.BottomNav
 import com.example.hw01_papara.ui.chatscreen.MessagingScreen
 import com.example.hw01_papara.ui.loginscreen.LoginScreen
+import com.example.hw01_papara.ui.registerscreen.RegisterScreen
+import com.example.hw01_papara.ui.splashscreen.SplashScreen
 import com.example.hw01_papara.ui.theme.Hw01paparaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,11 +47,10 @@ class MainActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreen(navController: NavController) {
+    fun MainScreen() {
         Scaffold(
             bottomBar = { BottomNav() },
         ) {
-
         }
     }
 
@@ -56,13 +58,19 @@ class MainActivity : ComponentActivity() {
     fun SetupNavGraph(navController: NavHostController) {
         NavHost(
             navController = navController,
-            startDestination = "login_screen",
+            startDestination = "splash_screen",
         ) {
+            composable("splash_screen") {
+                SplashScreen(navController = navController)
+            }
             composable("login_screen") {
                 LoginScreen(navController = navController)
             }
+            composable("register_screen") {
+                RegisterScreen(navController = navController)
+            }
             composable("main_screen") {
-                MainScreen(navController = navController)
+                MainScreen()
             }
             //kullanılmıyor şu anlık
             composable("messaging_screen") {

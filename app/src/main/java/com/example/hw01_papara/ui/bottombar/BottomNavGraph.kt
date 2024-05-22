@@ -1,13 +1,15 @@
 package com.example.hw01_papara.ui.bottombar
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.hw01_papara.ui.chatnavigate.ChatNavigaitonScreen
+import com.example.hw01_papara.presentation.meals.MealsScreen
 import com.example.hw01_papara.ui.chatscreen.MessagingScreen
-
 
 @Composable
 fun BottomNavGraph(
@@ -18,13 +20,19 @@ fun BottomNavGraph(
         startDestination = BottomBarScreen.Chat.route
     ) {
         composable(route = BottomBarScreen.Chat.route) {
-            MessagingScreen(navController = navController)
+            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+                MessagingScreen(navController = navController)
+            }
         }
         composable(route = BottomBarScreen.Dishes.route) {
-            DishesScreen()
+            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+                MealsScreen(navigateToDetail = {})
+            }
         }
         composable(route = BottomBarScreen.Logout.route) {
-            LogoutScreen()
+            Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar
+                LogoutScreen()
+            }
         }
     }
 }

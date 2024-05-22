@@ -108,6 +108,7 @@ fun LoginScreen(navController: NavController) {
                     BottomLoginTextComponent(
                         initialText = "Haven't we seen you around here before? ",
                         action = "Join us!",
+                        navController = navController
                     )
                 }
             }
@@ -255,7 +256,7 @@ fun PasswordTextComponent(labelVal: String, password: String, onValueChange: (St
 
 
 @Composable
-fun BottomLoginTextComponent(initialText: String, action: String) {
+fun BottomLoginTextComponent(initialText: String, action: String,navController: NavController) {
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = Color(0xFF985277))) {
             append(initialText)
@@ -270,7 +271,7 @@ fun BottomLoginTextComponent(initialText: String, action: String) {
             .firstOrNull()?.let { span ->
                 if (span.item == "Join us!") {
                     //Register sayfasına yönlendir
-                    //  navController.navigate("register")
+                    navController.navigate("register_screen")
                 }
             }
     })

@@ -23,6 +23,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.*
 import com.example.hw01_papara.R
 import java.util.regex.Pattern
@@ -31,7 +33,7 @@ class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RegisterScreen()
+            RegisterScreen(navController = rememberNavController())
         }
     }
 }
@@ -62,7 +64,7 @@ fun GradientButton(
 }
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavController) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
@@ -243,7 +245,8 @@ fun RegisterScreen() {
                     passwordMatchError = password.text != confirmPassword.text
 
                     if (!emailError && !passwordError && !passwordMatchError) {
-                        // kayit islemi
+                        //succes işlemi
+                        navController.navigate("main_screen")
                     }
                 }
             )
@@ -262,15 +265,16 @@ fun RegisterScreen() {
                     color = Color(0xFFFF8C61),
                     modifier = Modifier.clickable {
                         // login sayfasina yonlendirme
+                        navController.navigate("login_screen")
                     }
                 )
             }
         }
     }
 }
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview() {
     RegisterScreen()
-}
+}*/

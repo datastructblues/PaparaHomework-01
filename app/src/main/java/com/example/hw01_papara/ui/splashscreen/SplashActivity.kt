@@ -57,7 +57,7 @@ fun SplashScreen(navController: NavController) {
 
     LaunchedEffect(key1 = true) {
         delay(3000) // 3 saniye
-        navController.navigate("destination_route") // diger ekranlar
+        navController.navigate("login_screen") // diger ekranlar
     }
 }
 
