@@ -21,7 +21,7 @@ fun BottomNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreen.Chat.route
+        startDestination = BottomBarScreen.Dishes.route
     ) {
         composable(route = BottomBarScreen.Chat.route) {
             Box(modifier = Modifier.padding(bottom = 56.dp)) { // Adjust 56.dp based on the height of your BottomBar

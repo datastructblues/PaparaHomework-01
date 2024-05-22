@@ -16,15 +16,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.hw01_papara.presentation.detail.DetailScreen
+import com.example.hw01_papara.ui.bottombar.BottomBarScreen
 import com.example.hw01_papara.ui.bottombar.BottomNav
 import com.example.hw01_papara.ui.chatscreen.MessagingScreen
 import com.example.hw01_papara.ui.loginscreen.LoginScreen
 import com.example.hw01_papara.ui.registerscreen.RegisterScreen
 import com.example.hw01_papara.ui.splashscreen.SplashScreen
 import com.example.hw01_papara.ui.theme.Hw01paparaTheme
+import com.example.hw01_papara.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,6 +78,8 @@ class MainActivity : ComponentActivity() {
             composable("main_screen") {
                 MainScreen()
             }
+
+
             //kullanılmıyor şu anlık
             composable("messaging_screen") {
                 MessagingScreen(navController = navController)

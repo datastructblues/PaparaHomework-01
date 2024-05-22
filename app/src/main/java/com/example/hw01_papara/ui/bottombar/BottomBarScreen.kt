@@ -17,7 +17,7 @@ sealed class BottomBarScreen(
     )
 
     data object Detail: BottomBarScreen(
-        route = "detail{mealId}",
+        route = "detail/{mealId}",
         title = "Detail",
         icon = R.drawable.ic_dishes,
         icon_focused = R.drawable.ic_dishes
