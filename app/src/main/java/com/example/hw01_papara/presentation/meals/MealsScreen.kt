@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,7 +65,10 @@ fun MealsScreen(
 
         }
     }
+}
 
-
-
+@Preview(showBackground = true)
+@Composable
+fun MealsScreenPreview() {
+    MealsScreen(navigateToDetail = {})
 }

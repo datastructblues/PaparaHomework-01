@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936721411092",
+    "project_id": "paparahomework-01",
+    "storage_bucket": "paparahomework-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936721411092:android:3e20a5206338b88c65cb01",
+        "android_client_info": {
+          "package_name": "com.example.hw01_papara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDifTU19XzNWN1Nok0PI4rjS2h6AQfJnFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

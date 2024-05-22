@@ -63,7 +63,4 @@ fun DetailScreen(
     }
 
 
-
-
-
 }
